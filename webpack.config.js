@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
@@ -53,7 +54,10 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new HtmlWebpackPlugin({filename: 'assets/admin.html'})
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -75,4 +79,5 @@ if (process.env.NODE_ENV === 'production') {
       minimize: true
     })
   ])
+  module.exports.output.filename = 'build.[hash].js'
 }
