@@ -1,44 +1,63 @@
 <template>
   <div id="app">
+    <div class="article" v-for="article in articles">
+      <div class="article-title">
+        {{ article.title }}
+      </div>
+      <div class="article-content">
+        {{ article.content }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      articles: []
     }
+  },
+  mounted () {
+    axios.get('/public/data.json').then(res => {
+      this.articles = res.data
+    })
   }
 }
 </script>
 
 <style>
-#app {
+body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #666;
+  font-size: 12px;
+  background: #f7f7f7;
+  line-height: 1.5;
+  box-sizing: border-box;
 }
 
 h1, h2 {
   font-weight: normal;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.article {
+  margin: 8px 8px 12px;
+  border: solid 1px #ccc;
+  padding: 8px 12px;
+  border-radius: 3px;
+  word-wrap: break-word;
+  background: #fff;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
+.article-title {
+  font-size: 16px;
+  margin-bottom: 12px;
 }
-
-a {
-  color: #42b983;
+.article-content {
 }
 </style>
