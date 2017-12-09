@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    publicPath: '/',
     filename: 'build.js'
   },
   module: {
@@ -57,7 +57,7 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
-    new HtmlWebpackPlugin({filename: 'assets/admin.html'})
+    new HtmlWebpackPlugin()
   ]
 }
 
