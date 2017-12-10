@@ -93,7 +93,6 @@ h1, h2 {
 .article {
   margin: 0 8px 12px;
   border: solid 1px #ccc;
-  padding: 8px 12px;
   border-radius: 3px;
   word-wrap: break-word;
   background: #fff;
@@ -102,8 +101,10 @@ h1, h2 {
 .article-title {
   font-size: 16px;
   margin-bottom: 12px;
+  padding: 8px 12px;
+  border-bottom: solid 1px #eee;
 }
 .article-content {
-
+  padding: 4px 12px;
 }
 </style>
