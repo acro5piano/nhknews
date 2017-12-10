@@ -18,7 +18,6 @@ new Promise(resolve => {
             content: $('article.module--detail').text().replace(/\t/g, ''),
             url: path
           }
-          fs.writeFile(__dirname + '/public/data.json', JSON.stringify(news), err => err && console.log(err))
           articles.push(news)
           resolve()
         })
