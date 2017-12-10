@@ -33,15 +33,10 @@ exports.handler = function(event, context, callback) {
       })
     })
   }).then(() => {
-    // fs.writeFile(__dirname + '/public/data.json', JSON.stringify(articles), err => err && console.log(err))
-    const params = {
-      Bucket: 'nhknews',
-      Key: '/public/data.json',
-      Body: JSON.stringify(articles),
-    }
-    s3bucket.upload(params, function(err, data) {
+    const params = { Bucket: 'nhknews', Key: 'public/data.json', Body: JSON.stringify(articles) }
+    s3.putObject(params, function(err, data) {
       if (err) {
-        callback(err, null)
+        callback(err)
       }
       callback(null, 'success')
     });

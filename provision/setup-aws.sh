@@ -55,6 +55,6 @@ function lambda-deploy() {
 
 # s3
 
-zip -r bundle.zip . && \
+zip -r bundle.zip scraper.js node_modules && \
   lambda-deploy && \
   rm bundle.zip
