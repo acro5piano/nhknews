@@ -15,8 +15,10 @@ new Promise(resolve => {
           const $ = cheerio.load(newsString)
           let news = {
             title: item.title,
-            content: $('article.module--detail').text().replace(/\t/g, ''),
-            url: path
+            summary: $('#news_textbody').text(),
+            content: $('#news_textmore').html().replace(/\t/g, ''),
+            url: path,
+            createdAt: $('.module--header time').attr('datetime'),
           }
           articles.push(news)
           resolve()
