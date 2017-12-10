@@ -2,7 +2,7 @@
   <div id="app">
     <div class="header">
       <span class="header-menu" @click="openMenu">
-        <i class="fa fa-bars" aria-hidden="true"></i>
+        <i class="material-icons">menu</i>
       </span>
       NHK News
     </div>
@@ -11,7 +11,7 @@
       <div class="menu" v-if="isMenuOpened">
         <div class="header">
           <span class="header-menu" @click="closeMenu">
-            <i class="fa fa-times" aria-hidden="true"></i>
+            <i class="material-icons">close</i>
           </span>
         </div>
         <div class="menu-content">
@@ -27,7 +27,7 @@
     </transition>
 
     <div class="spinner" v-if="loading">
-      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+      loading...
     </div>
 
     <div class="article-container" v-if="! loading">
@@ -48,7 +48,7 @@
       <div class="article-detail" v-if="selectedArticleIndex !== false">
         <div class="header">
           <span class="header-menu" @click="closeArticle()">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <i class="material-icons">arrow_back</i>
           </span>
         </div>
         <div class="article-detail-container">
@@ -127,17 +127,16 @@ body {
   margin-top: 48px;
   background: #f7f7f7;
 }
-body.lock {
-  overflow-y: hidden;
+h1, h2 {
+  font-weight: normal;
 }
-
 #app {
   line-height: 1.5;
   box-sizing: border-box;
 }
 
-h1, h2 {
-  font-weight: normal;
+.lock {
+  overflow-y: hidden;
 }
 
 .header {
