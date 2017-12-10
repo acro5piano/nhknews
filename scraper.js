@@ -40,7 +40,9 @@ exports.handler = function(event, context, callback) {
       Body: JSON.stringify(articles),
     }
     s3bucket.upload(params, function(err, data) {
-      callback(err, null)
+      if (err) {
+        callback(err, null)
+      }
       callback(null, 'success')
     });
   })
