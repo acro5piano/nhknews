@@ -44,18 +44,20 @@
       </div>
     </div>
 
-    <div class="article-detail" v-if="selectedArticleIndex !== false">
-      <div class="header">
-        <span class="header-menu" @click="closeArticle()">
-          <i class="fa fa-arrow-left" aria-hidden="true"></i>
-        </span>
+    <transition name="fade">
+      <div class="article-detail" v-if="selectedArticleIndex !== false">
+        <div class="header">
+          <span class="header-menu" @click="closeArticle()">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          </span>
+        </div>
+        <div class="article-detail-container">
+          <p class="article-detail-title">{{ selectedArticle.title }}</p>
+          <p class="article-detail-body">{{ selectedArticle.summary }}</p>
+          <p class="article-detail-body" v-html="selectedArticle.content"></p>
+        </div>
       </div>
-      <div class="article-detail-container">
-        <p class="article-detail-title">{{ selectedArticle.title }}</p>
-        <p class="article-detail-body">{{ selectedArticle.summary }}</p>
-        <p class="article-detail-body" v-html="selectedArticle.content"></p>
-      </div>
-    </div>
+    </transition>
 
   </div>
 </template>
