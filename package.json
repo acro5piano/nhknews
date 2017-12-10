@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot",
-    "build": "rm -r dist/*; cross-env NODE_ENV=production webpack --progress --hide-modules; cp -r public dist;"
+    "build": "rm -r dist/*; cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
     "axios": "^0.17.1",
