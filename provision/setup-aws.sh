@@ -43,12 +43,6 @@ function lambda() {
   rm bundle.zip
 }
 
-function bundle() {
-  zip -r bundle.zip scraper.js \
-    node_modules/{cheerio,inherits,domhandler,domelementtype,domutils,css-select,dom-serializer,entities,htmlparser2,lodash,parse5} \
-    node_modules/{axios,follow-redirects,ms,is-buffer}
-}
-
 function lambda-deploy() {
   aws lambda update-function-code \
     --function-name nhknews \
@@ -61,6 +55,6 @@ function lambda-deploy() {
 
 # s3
 
-bundle && \
+zip -r bundle.zip . && \
   lambda-deploy && \
   rm bundle.zip
