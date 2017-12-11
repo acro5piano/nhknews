@@ -1,16 +1,21 @@
 <template>
   <div id="app">
     <div class="header">
-      <span class="header-menu" @click="openMenu">
+      <span class="header-menu" @click="$store.dispatch('openMenu')">
         <i class="material-icons">menu</i>
       </span>
       NHK News
+    </div>
+    <router-view></router-view>
+
+    <div class="spinner" v-if="loading">
+      loading...
     </div>
 
     <transition name="fade">
       <div class="menu" v-if="isMenuOpened">
         <div class="header">
-          <span class="header-menu" @click="closeMenu">
+          <span class="header-menu" @click="$store.dispatch('closeMenu')">
             <i class="material-icons">close</i>
           </span>
         </div>
@@ -26,39 +31,6 @@
       </div>
     </transition>
 
-    <div class="spinner" v-if="loading">
-      loading...
-    </div>
-
-    <div class="article-container" v-if="! loading">
-      <div class="article" v-for="(article, index) in articles" @click="openArticle(index)">
-        <div class="article-title">
-          {{ article.title }}
-          <div class="article-created-at">
-            {{ article.createdAt | toHumanTime }}
-          </div>
-        </div>
-        <div class="article-content">
-          {{ article.summary }}
-        </div>
-      </div>
-    </div>
-
-    <transition name="fade">
-      <div class="article-detail" v-if="selectedArticleIndex !== false">
-        <div class="header">
-          <span class="header-menu" @click="closeArticle()">
-            <i class="material-icons">arrow_back</i>
-          </span>
-        </div>
-        <div class="article-detail-container">
-          <p class="article-detail-title">{{ selectedArticle.title }}</p>
-          <p class="article-detail-body">{{ selectedArticle.summary }}</p>
-          <p class="article-detail-body" v-html="selectedArticle.content"></p>
-        </div>
-      </div>
-    </transition>
-
   </div>
 </template>
 
@@ -66,43 +38,12 @@
 import Vue from 'vue'
 import axios from 'axios'
 import moment from 'moment'
+import { mapState } from 'vuex'
 
 export default {
   name: 'app',
-  data () {
-    return {
-      articles: [],
-      loading: true,
-      isMenuOpened: false,
-      selectedArticleIndex: false,
-    }
-  },
   mounted () {
-    axios.get('/public/data.json').then(res => {
-      this.articles = res.data
-      this.loading = false
-    })
-  },
-  methods: {
-    openMenu () {
-      this.isMenuOpened = true
-      this.toggleScrollLockBody()
-    },
-    closeMenu () {
-      this.isMenuOpened = false
-      this.toggleScrollLockBody()
-    },
-    openArticle (index) {
-      this.selectedArticleIndex = index
-      this.toggleScrollLockBody()
-    },
-    closeArticle () {
-      this.selectedArticleIndex = false
-      this.toggleScrollLockBody()
-    },
-    toggleScrollLockBody () {
-      document.getElementsByTagName('body')[0].classList.toggle('lock')
-    }
+    this.$store.dispatch('getArticles')
   },
   filters: {
     toHumanTime (value) {
@@ -110,9 +51,7 @@ export default {
     }
   },
   computed: {
-    selectedArticle () {
-      return this.articles[this.selectedArticleIndex] || {}
-    }
+    ...mapState(['articles', 'loading', 'isMenuOpened'])
   }
 }
 </script>
@@ -165,6 +104,7 @@ h1, h2 {
   height: 100vh;
   width: 100%;
   background: #fff;
+  top: 0;
 }
 .menu-content {
   padding-top: 30vh;
