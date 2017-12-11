@@ -42,8 +42,14 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'app',
-  mounted () {
-    this.$store.dispatch('getArticles')
+  data () {
+    return {
+      loading: true
+    }
+  },
+  async mounted () {
+    await this.$store.dispatch('getArticles')
+    this.loading = false
   },
   filters: {
     toHumanTime (value) {
@@ -51,7 +57,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['articles', 'loading', 'isMenuOpened'])
+    ...mapState(['articles', 'isMenuOpened'])
   }
 }
 </script>

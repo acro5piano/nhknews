@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 const state = {
   articles: [],
-  loading: false,
+  loading: true,
   isMenuOpened: false
 }
 
