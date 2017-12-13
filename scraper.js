@@ -52,7 +52,7 @@ exports.handler = function(event, context, callback) {
         }
       }
       cloudfront.createInvalidation(cloudFrontParams, function(err, data) {
-        if (err) callback(error)
+        if (err) callback(err)
         else     callback(null, 'success')
       })
     })
