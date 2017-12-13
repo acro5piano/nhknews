@@ -4,6 +4,7 @@ const fs = require('fs')
 const AWS = require('aws-sdk')
 AWS.config.region = 'us-east-1'
 const s3 = new AWS.S3()
+const cloudfront = new AWS.CloudFront()
 const bucketName = 'nhknews';
 
 exports.handler = function(event, context, callback) {
@@ -38,7 +39,22 @@ exports.handler = function(event, context, callback) {
       if (err) {
         callback(err)
       }
-      callback(null, 'success')
-    });
+      const cloudFrontParams = {
+        DistributionId: 'E3O29DRB7JJ6T',
+        InvalidationBatch: {
+          CallerReference: Date.now(),
+          Paths: {
+            Quantity: 0,
+            Items: [
+              'public/*',
+            ]
+          }
+        }
+      }
+      cloudfront.createInvalidation(cloudFrontParams, function(err, data) {
+        if (err) callback(error)
+        else     callback(null, 'success')
+      })
+    })
   })
 }

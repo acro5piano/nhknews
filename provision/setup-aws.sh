@@ -41,6 +41,8 @@ function lambda() {
     --runtime nodejs6.10
 
   rm bundle.zip
+
+  # TODO: cloudwatch event trigger
 }
 
 function lambda-deploy() {
