@@ -44,9 +44,9 @@ exports.handler = function(event, context, callback) {
         InvalidationBatch: {
           CallerReference: Date.now(),
           Paths: {
-            Quantity: 0,
+            Quantity: 1,
             Items: [
-              'public/*',
+              '/public/data.json',
             ]
           }
         }

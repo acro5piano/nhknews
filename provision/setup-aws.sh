@@ -32,6 +32,11 @@ function lambda() {
     --policy-arn arn:aws:iam::aws:policy/CloudWatchLogsFullAccess \
     || true
 
+  aws iam attach-role-policy \
+    --role-name nhknews \
+    --policy-arn arn:aws:iam::aws:policy/CloudFrontFullAccess \
+    || true
+
   aws lambda create-function \
     --region ap-northeast-1 \
     --function-name nhknews \
