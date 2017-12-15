@@ -1,24 +1,14 @@
 <template>
   <div>
     <div class="article-detail">
-      <div class="header">
-        <span class="header-menu" @click="$router.back()">
-          <i class="material-icons">arrow_back</i>
-        </span>
-      </div>
-      <div class="article-detail-container">
-        <p class="article-detail-title">{{ article.title }}</p>
-        <p class="article-detail-body">{{ article.summary }}</p>
-        <p class="article-detail-body" v-html="article.content"></p>
-      </div>
+      <p class="article-detail-title">{{ article.title }}</p>
+      <p class="article-detail-body">{{ article.summary }}</p>
+      <p class="article-detail-body" v-html="article.content"></p>
     </div>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import axios from 'axios'
-import moment from 'moment'
 import { mapState } from 'vuex'
 
 export default {
@@ -38,21 +28,24 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .article-detail {
-  position: fixed;
-  top: 0;
   background: #fff;
   height: 100vh;
   width: 100%;
   overflow-y: scroll;
 }
-.article-detail-container {
-  margin-top: 54px;
-}
 .article-detail-title {
   font-size: 16px;
   padding: 14px 12px 0;
+  color: #444;
+}
+.article-detail-body {
+  padding: 0 12px;
+}
+.article-detail-title {
+  font-size: 16px;
+  padding: 0 12px;
   color: #444;
 }
 .article-detail-body {

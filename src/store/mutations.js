@@ -10,10 +10,7 @@ export default {
   [types.STOP_LOADING] (state) {
     state.loading = false
   },
-  [types.OPEN_MENU] (state) {
-    state.isMenuOpened = true
+  [types.TOGGLE_MENU] (state) {
+    state.isMenuOpened = ! state.isMenuOpened
   },
-  [types.CLOSE_MENU] (state) {
-    state.isMenuOpened = false
-  }
 }

@@ -1,10 +1,17 @@
 <template>
   <div id="app">
     <div class="header">
-      <span class="header-menu" @click="$store.dispatch('openMenu')">
-        <i class="material-icons">menu</i>
+      <span class="header-menu-icon" @click="$store.dispatch('toggleMenu')" v-if="$route.name !== 'show'">
+        <i class="material-icons" v-if="! isMenuOpened && $route.path === '/'">menu</i>
+        <i class="material-icons" v-if="isMenuOpened && $route.path === '/'">close</i>
+        <i class="material-icons" v-if="isMenuOpened && $route.path === '/about'">close</i>
       </span>
-      NHK News
+      <span class="header-menu-icon" @click="$router.back()" v-else>
+        <i class="material-icons" v-if="$route.name === 'show'">arrow_back</i>
+      </span>
+      <span v-if="! isMenuOpened && $route.path === '/'">
+        NHK News
+      </span>
     </div>
     <router-view></router-view>
 
@@ -13,22 +20,7 @@
     </div>
 
     <transition name="fade">
-      <div class="menu" v-if="isMenuOpened">
-        <div class="header">
-          <span class="header-menu" @click="$store.dispatch('closeMenu')">
-            <i class="material-icons">close</i>
-          </span>
-        </div>
-        <div class="menu-content">
-          <p class="menu-content-title">Fast news</p>
-          <p class="menu-content-version">v0.0.1</p>
-          <p class="menu-content-credit">
-            <a class="menu-content-credit" href="https://github.com/acro5piano/" target="_blank">
-              Kazuya Gosho
-            </a>
-          </p>
-        </div>
-      </div>
+      <global-header></global-header>
     </transition>
 
   </div>
@@ -38,10 +30,14 @@
 import Vue from 'vue'
 import axios from 'axios'
 import moment from 'moment'
+import globalHeader from './components/Layout/Header.vue'
 import { mapState } from 'vuex'
 
 export default {
   name: 'app',
+  components : {
+    globalHeader
+  },
   data () {
     return {
       loading: true
@@ -99,32 +95,11 @@ h1, h2 {
   box-shadow: 0 1px 4px rgba(0,0,0,.25);
   padding: 0 12px;
 }
-.header-menu {
+.header-menu-icon {
   margin-right: 16px;
   font-size: 22px;
   padding: 6px;
-}
-
-.menu {
-  position: fixed;
-  height: 100vh;
-  width: 100%;
-  background: #fff;
-  top: 0;
-}
-.menu-content {
-  padding-top: 30vh;
-  text-align: center;
-  height: 80vh;
-}
-.menu-content-title {
-  font-size: 20px;
-  color: #333;
-}
-.menu-content-credit {
-  padding-top: 24px;
-  font-size: 12px;
-  color: #888;
+  cursor: pointer;
 }
 
 .spinner {
@@ -134,51 +109,6 @@ h1, h2 {
   height: 80vh;
 }
 
-.article-container {
-  padding-top: 12px;
-}
-.article {
-  margin: 0 8px 12px;
-  border: solid 1px #ccc;
-  border-radius: 3px;
-  word-wrap: break-word;
-  background: #fff;
-}
-.article-title {
-  font-size: 16px;
-  margin-bottom: 10px;
-  padding: 8px 12px;
-  border-bottom: solid 1px #eee;
-}
-.article-created-at {
-  color: #888;
-  text-align: right;
-  font-size: 10px;
-  padding-top: 4px;
-}
-.article-content {
-  padding: 0 12px 12px;
-}
-
-.article-detail {
-  position: fixed;
-  top: 0;
-  background: #fff;
-  height: 100vh;
-  width: 100%;
-  overflow-y: scroll;
-}
-.article-detail-container {
-  margin-top: 54px;
-}
-.article-detail-title {
-  font-size: 16px;
-  padding: 14px 12px 0;
-  color: #444;
-}
-.article-detail-body {
-  padding: 0 12px;
-}
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .3s

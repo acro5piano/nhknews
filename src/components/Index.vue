@@ -51,6 +51,7 @@ export default {
   border-radius: 3px;
   word-wrap: break-word;
   background: #fff;
+  cursor: pointer;
 }
 .article-title {
   font-size: 16px;

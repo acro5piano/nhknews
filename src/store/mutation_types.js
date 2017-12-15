@@ -1,5 +1,4 @@
 export const SET_ARTICLES = 'SET_ARTICLES'
 export const STOP_LOADING = 'STOP_LOADING'
 export const START_LOADING = 'START_LOADING'
-export const OPEN_MENU = 'OPEN_MENU'
-export const CLOSE_MENU = 'CLOSE_MENU'
+export const TOGGLE_MENU = 'TOGGLE_MENU'

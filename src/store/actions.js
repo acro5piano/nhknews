@@ -12,12 +12,7 @@ export const getArticles = async ({ commit }) => {
   })
 }
 
-export const openMenu = ({ commit }) => {
+export const toggleMenu = ({ commit }) => {
   document.getElementsByTagName('body')[0].classList.toggle('lock')
-  commit(types.OPEN_MENU)
-}
-
-export const closeMenu = ({ commit }) => {
-  document.getElementsByTagName('body')[0].classList.toggle('lock')
-  commit(types.CLOSE_MENU)
+  commit(types.TOGGLE_MENU)
 }
