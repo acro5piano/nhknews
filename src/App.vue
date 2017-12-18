@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :style="appClass">
     <div class="header">
       <span class="header-menu-icon" @click="$store.dispatch('toggleMenu')" v-if="$route.name !== 'show'">
         <i class="material-icons" v-if="! isMenuOpened && $route.path === '/'">menu</i>
@@ -31,21 +31,15 @@ import Vue from 'vue'
 import axios from 'axios'
 import moment from 'moment'
 import globalHeader from './components/Layout/Header.vue'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'app',
   components : {
     globalHeader
   },
-  data () {
-    return {
-      loading: true
-    }
-  },
   async mounted () {
     await this.$store.dispatch('getArticles')
-    this.loading = false
   },
   filters: {
     toHumanTime (value) {
@@ -53,7 +47,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(['articles', 'isMenuOpened'])
+    ...mapState(['loading', 'articles', 'isMenuOpened', 'isNightMode']),
+    ...mapGetters(['appClass'])
   }
 }
 </script>
@@ -63,10 +58,8 @@ body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #666;
   font-size: 12px;
   margin-top: 48px;
-  background: #f7f7f7;
 }
 h1, h2 {
   font-weight: normal;
@@ -111,9 +104,9 @@ h1, h2 {
 
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .3s
+  transition: opacity .1s
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to {
   opacity: 0
 }
 </style>

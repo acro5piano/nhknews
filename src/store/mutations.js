@@ -13,4 +13,7 @@ export default {
   [types.TOGGLE_MENU] (state) {
     state.isMenuOpened = ! state.isMenuOpened
   },
+  [types.TOGGLE_NIGHT_MODE] (state) {
+    state.isNightMode = ! state.isNightMode
+  },
 }

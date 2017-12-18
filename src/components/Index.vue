@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="article-container">
-      <div class="article" v-for="(article, index) in articles" @click="$router.push('/articles/' + index)">
-        <div class="article-title">
+      <div class="article" :style="articleStyle" v-for="(article, index) in articles" @click="$router.push('/articles/' + index)">
+        <div class="article-title" :style="{ 'border-color': isNightMode ? '#888' : '#eee' }">
           {{ article.title }}
           <div class="article-created-at">
             {{ article.createdAt | toHumanTime }}
@@ -36,7 +36,13 @@ export default {
     }
   },
   computed: {
-    ...mapState(['articles'])
+    ...mapState(['articles', 'isNightMode']),
+    articleStyle () {
+      return {
+        background: this.isNightMode ? '#666' : '#fff',
+        'border-color': this.isNightMode ? '#666' : '#ccc'
+      }
+    }
   }
 }
 </script>
@@ -57,7 +63,7 @@ export default {
   font-size: 16px;
   margin-bottom: 10px;
   padding: 8px 12px;
-  border-bottom: solid 1px #eee;
+  border-bottom: solid 1px;
 }
 .article-created-at {
   color: #888;

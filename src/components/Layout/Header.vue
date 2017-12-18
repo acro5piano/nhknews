@@ -1,8 +1,11 @@
 <template>
-  <div class="menu" v-if="isMenuOpened">
+  <div class="menu" :style="appClass" v-if="isMenuOpened">
     <div class="menu-content">
       <div class="menu-content-item" v-if="page === ''" @click="page = 'about'">
         About
+      </div>
+      <div class="menu-content-item" v-if="page === ''" @click="$store.dispatch('toggleNightMode')">
+        Night mode
       </div>
       <div class="menu-page" v-if="page === 'about'">
         <p class="menu-content-title">Fast news</p>
@@ -17,7 +20,7 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'global-header',
@@ -28,6 +31,7 @@ export default {
   },
   computed: {
     ...mapState(['isMenuOpened']),
+    ...mapGetters(['appClass']),
   },
   watch: {
     isMenuOpened (from, to) {
