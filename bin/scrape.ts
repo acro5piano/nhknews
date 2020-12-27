@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-require('dotenv').config()
+require('dotenv').config({ systemvars: true })
 
 import axios from 'axios'
 import cheerio from 'cheerio'
