@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export AWS_PROFILE=kazuya
-
 yarn build
 aws s3 sync --delete dist/ s3://nhknews/
 aws lambda invoke --function-name nhknews /dev/stdin
