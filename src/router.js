@@ -11,12 +11,12 @@ export default new VueRouter({
     {
       path: '/',
       name: 'index',
-      component: Index
+      component: Index,
     },
     {
       path: '/articles/:id',
       name: 'show',
-      component: Show
+      component: Show,
     },
   ],
 })

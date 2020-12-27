@@ -1,15 +1,16 @@
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
+  font-size: 16px;
   font-weight: 400;
   src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
-  src: local('Material Icons'), local('MaterialIcons-Regular')
+  src: local('Material Icons'), local('MaterialIcons-Regular');
 }
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px; /* Preferred icon size */
   display: inline-block;
   line-height: 2;
   text-transform: none;
@@ -30,9 +31,10 @@
   font-feature-settings: 'liga';
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0
+  opacity: 0;
 }

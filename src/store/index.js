@@ -10,12 +10,12 @@ const state = {
   articles: [],
   loading: true,
   isMenuOpened: false,
-  isNightMode: false,
+  isNightMode: localStorage.getItem('is_night_mode') === 'true',
 }
 
 export default new Vuex.Store({
   state,
   getters,
   actions,
-  mutations
+  mutations,
 })

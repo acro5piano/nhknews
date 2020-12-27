@@ -3,8 +3,8 @@ import axios from 'axios'
 
 export const getArticles = async ({ commit }) => {
   commit(types.START_LOADING)
-  return new Promise(resolve => {
-    axios.get('/public/data.json').then(res => {
+  return new Promise((resolve) => {
+    axios.get('/public/data.json').then((res) => {
       commit(types.SET_ARTICLES, res.data)
       commit(types.STOP_LOADING)
       resolve()
@@ -18,5 +18,6 @@ export const toggleMenu = ({ commit }) => {
 }
 
 export const toggleNightMode = ({ commit }) => {
+  localStorage.setItem('is_night_mode', 'true')
   commit(types.TOGGLE_NIGHT_MODE)
 }

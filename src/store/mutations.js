@@ -1,19 +1,19 @@
 import * as types from './mutation_types.js'
 
 export default {
-  [types.SET_ARTICLES] (state, articles) {
+  [types.SET_ARTICLES](state, articles) {
     state.articles = articles
   },
-  [types.START_LOADING] (state) {
+  [types.START_LOADING](state) {
     state.loading = true
   },
-  [types.STOP_LOADING] (state) {
+  [types.STOP_LOADING](state) {
     state.loading = false
   },
-  [types.TOGGLE_MENU] (state) {
-    state.isMenuOpened = ! state.isMenuOpened
+  [types.TOGGLE_MENU](state) {
+    state.isMenuOpened = !state.isMenuOpened
   },
-  [types.TOGGLE_NIGHT_MODE] (state) {
-    state.isNightMode = ! state.isNightMode
+  [types.TOGGLE_NIGHT_MODE](state) {
+    state.isNightMode = !state.isNightMode
   },
 }

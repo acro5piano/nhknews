@@ -5,6 +5,8 @@ import axios from 'axios'
 import cheerio from 'cheerio'
 import AWS from 'aws-sdk'
 import bluebird from 'bluebird'
+import fs from 'fs/promises'
+import path from 'path'
 
 const cloudfront = new AWS.CloudFront()
 
@@ -58,6 +60,11 @@ async function main() {
     Body: JSON.stringify(articles),
   }
   await s3.putObject(params).promise()
+
+  fs.writeFile(
+    path.resolve(__dirname, '../public/data.json'),
+    JSON.stringify(articles),
+  )
 
   await cloudfront
     .createInvalidation({
