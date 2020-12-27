@@ -16,6 +16,7 @@ jobs:
       - run: |
           yarn install
           yarn tsc
+          aws configure set preview.cloudfront true
           bin/deploy.sh
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
