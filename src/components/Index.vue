@@ -47,7 +47,7 @@ export default {
     ...mapState(['articles', 'isNightMode']),
     articleStyle() {
       return {
-        background: this.isNightMode ? '#111' : '#fff',
+        background: this.isNightMode ? '#333' : '#fff',
         'border-color': this.isNightMode ? '#666' : '#ccc',
       }
     },

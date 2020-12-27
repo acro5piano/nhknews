@@ -4,14 +4,22 @@
       <div class="menu-content-item" v-if="page === ''" @click="page = 'about'">
         About
       </div>
-      <div class="menu-content-item" v-if="page === ''" @click="$store.dispatch('toggleNightMode')">
+      <div
+        class="menu-content-item"
+        v-if="page === ''"
+        @click="$store.dispatch('toggleNightMode')"
+      >
         Night mode
       </div>
       <div class="menu-page" v-if="page === 'about'">
         <p class="menu-content-title">Fast news</p>
-        <p class="menu-content-version">v0.0.1</p>
+        <p class="menu-content-version">v1.0.1</p>
         <p class="menu-content-credit">
-          <a class="menu-content-credit" href="https://github.com/acro5piano/" target="_blank">
+          <a
+            class="menu-content-credit"
+            href="https://github.com/acro5piano/"
+            target="_blank"
+          >
             Kazuya Gosho
           </a>
         </p>
@@ -24,7 +32,7 @@ import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'global-header',
-  data () {
+  data() {
     return {
       page: '',
     }
@@ -34,12 +42,11 @@ export default {
     ...mapGetters(['appClass']),
   },
   watch: {
-    isMenuOpened (from, to) {
+    isMenuOpened(from, to) {
       this.page = ''
-    }
-  }
+    },
+  },
 }
-
 </script>
 <style>
 .menu {
