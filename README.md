@@ -1,6 +1,6 @@
 # nhknews
 
-> A Vue.js project
+Fast, no personalize text news
 
 ## Build Setup
 
