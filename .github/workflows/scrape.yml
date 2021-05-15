@@ -1,10 +1,7 @@
 on:
   schedule:
     - cron: '0 * * * *'
-  push:
-    branches:
-      - *
-
+  push: {}
 jobs:
   scrape:
     runs-on: ubuntu-latest
