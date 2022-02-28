@@ -19,7 +19,7 @@
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.7.2",
     "cheerio": "^1.0.0-rc.2",
-    "dayjs": "^1.9.8",
+    "dayjs": "^1.10.8",
     "dotenv": "^8.2.0",
     "lodash": "^4.17.4",
     "vue-router": "^3.0.1",
